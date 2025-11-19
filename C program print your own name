@@ -1,0 +1,6 @@
+#include <stdio.h>
+
+int main() {
+    printf("Nowha Tasmiah\n");
+    return 0;
+}
