@@ -1,0 +1,43 @@
+#include <stdio.h>
+#include <string.h>
+
+int main() {
+    char a[100], b[100], result[101]; // result can be 1 digit longer
+    int i, j, k, carry = 0;
+
+    printf("Enter first binary number: ");
+    scanf("%s", a);
+
+    printf("Enter second binary number: ");
+    scanf("%s", b);
+
+    int n1 = strlen(a);
+    int n2 = strlen(b);
+
+    i = n1 - 1;  // index for a
+    j = n2 - 1;  // index for b
+    k = 0;       // index for result
+
+    // Add binary digits from end to start
+    while (i >= 0 || j >= 0 || carry) {
+        int sum = carry;
+
+        if (i >= 0) sum += a[i--] - '0';  // convert char to int
+        if (j >= 0) sum += b[j--] - '0';
+
+        result[k++] = (sum % 2) + '0';  // store binary digit
+        carry = sum / 2;
+    }
+
+    // Reverse the result
+    result[k] = '\0';
+    for (i = 0, j = k - 1; i < j; i++, j--) {
+        char temp = result[i];
+        result[i] = result[j];
+        result[j] = temp;
+    }
+
+    printf("Sum of binary numbers: %s\n", result);
+
+    return 0;
+}
