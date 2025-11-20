@@ -1,0 +1,29 @@
+#include <stdio.h>
+#include <string.h>
+#include <ctype.h>
+
+int main() {
+    char str[200];
+
+    printf("Enter a string: ");
+    fgets(str, sizeof(str), stdin);  // Use fgets to read full line
+
+    printf("First letters of each word: ");
+
+    int n = strlen(str);
+
+    // Print first character if it's a letter
+    if (isalpha(str[0])) {
+        printf("%c ", str[0]);
+    }
+
+    // Loop through the string
+    for (int i = 1; i < n; i++) {
+        if (str[i - 1] == ' ' && isalpha(str[i])) {
+            printf("%c ", str[i]);
+        }
+    }
+
+    printf("\n");
+    return 0;
+}
