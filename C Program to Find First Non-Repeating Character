@@ -1,0 +1,32 @@
+#include <stdio.h>
+#include <string.h>
+
+#define MAX 256  // Total ASCII characters
+
+int main() {
+    char str[100];
+    int count[MAX] = {0};  // Array to store frequency of each character
+    int i;
+
+    printf("Enter a string: ");
+    scanf("%s", str);  // Use scanf for single word; use fgets for sentence
+
+    int len = strlen(str);
+
+    // Count frequency of each character
+    for (i = 0; i < len; i++) {
+        count[(int)str[i]]++;
+    }
+
+    // Find first non-repeating character
+    for (i = 0; i < len; i++) {
+        if (count[(int)str[i]] == 1) {
+            printf("First non-repeating character: %c\n", str[i]);
+            return 0;
+        }
+    }
+
+    printf("No non-repeating character found.\n");
+
+    return 0;
+}
