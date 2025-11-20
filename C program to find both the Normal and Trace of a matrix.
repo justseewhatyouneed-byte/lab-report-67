@@ -1,0 +1,48 @@
+#include <stdio.h>
+#include <math.h>
+
+int main() {
+    int r, c, i, j;
+    float trace = 0, normal = 0;
+
+    printf("Enter number of rows: ");
+    scanf("%d", &r);
+
+    printf("Enter number of columns: ");
+    scanf("%d", &c);
+
+    int a[r][c];
+
+    // Input matrix
+    printf("Enter matrix elements:\n");
+    for (i = 0; i < r; i++) {
+        for (j = 0; j < c; j++) {
+            scanf("%d", &a[i][j]);
+        }
+    }
+
+    // Calculate trace (only if square matrix)
+    if (r == c) {
+        for (i = 0; i < r; i++) {
+            trace += a[i][i];
+        }
+    } else {
+        printf("Trace not possible (matrix must be square)!\n");
+    }
+
+    // Calculate normal (Frobenius norm)
+    for (i = 0; i < r; i++) {
+        for (j = 0; j < c; j++) {
+            normal += a[i][j] * a[i][j];
+        }
+    }
+    normal = sqrt(normal);
+
+    // Display results
+    if (r == c)
+        printf("Trace of the matrix = %.2f\n", trace);
+
+    printf("Normal of the matrix = %.2f\n", normal);
+
+    return 0;
+}
