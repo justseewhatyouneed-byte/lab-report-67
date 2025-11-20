@@ -1,0 +1,40 @@
+#include <stdio.h>
+#include <string.h>
+
+int main() {
+    char str1[200], str2[100], result[300];
+    int pos;
+
+    printf("Enter the first string: ");
+    fgets(str1, sizeof(str1), stdin);
+    str1[strcspn(str1, "\n")] = '\0'; // Remove newline
+
+    printf("Enter the string to insert: ");
+    fgets(str2, sizeof(str2), stdin);
+    str2[strcspn(str2, "\n")] = '\0'; // Remove newline
+
+    printf("Enter the position to insert (starting from 0): ");
+    scanf("%d", &pos);
+
+    int len1 = strlen(str1);
+    int len2 = strlen(str2);
+
+    if (pos < 0 || pos > len1) {
+        printf("Invalid position!\n");
+        return 0;
+    }
+
+    // Copy first part of str1
+    strncpy(result, str1, pos);
+    result[pos] = '\0';
+
+    // Concatenate str2
+    strcat(result, str2);
+
+    // Concatenate remaining part of str1
+    strcat(result, str1 + pos);
+
+    printf("Resulting string: %s\n", result);
+
+    return 0;
+}
