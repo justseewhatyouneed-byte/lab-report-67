@@ -1,0 +1,40 @@
+#include <stdio.h>
+
+int main() {
+    int i, j, n, space;
+
+    printf("Enter number of rows for the upper half of the diamond: ");
+    scanf("%d", &n);
+
+    // Upper full pyramid
+    for (i = 1; i <= n; i++) {
+        // Print leading spaces
+        for (space = 1; space <= n - i; space++) {
+            printf(" ");
+        }
+
+        // Print stars
+        for (j = 1; j <= (2 * i - 1); j++) {
+            printf("*");
+        }
+
+        printf("\n");
+    }
+
+    // Lower inverted pyramid
+    for (i = n - 1; i >= 1; i--) {
+        // Print leading spaces
+        for (space = 1; space <= n - i; space++) {
+            printf(" ");
+        }
+
+        // Print stars
+        for (j = 1; j <= (2 * i - 1); j++) {
+            printf("*");
+        }
+
+        printf("\n");
+    }
+
+    return 0;
+}
