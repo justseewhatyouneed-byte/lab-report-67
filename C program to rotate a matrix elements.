@@ -1,0 +1,39 @@
+#include <stdio.h>
+
+int main() {
+    int m, n, i, j;
+
+    printf("Enter number of rows: ");
+    scanf("%d", &m);
+
+    printf("Enter number of columns: ");
+    scanf("%d", &n);
+
+    int matrix[m][n], rotated[n][m];
+
+    // Input matrix elements
+    printf("Enter elements of the matrix:\n");
+    for (i = 0; i < m; i++) {
+        for (j = 0; j < n; j++) {
+            scanf("%d", &matrix[i][j]);
+        }
+    }
+
+    // Rotate 90° clockwise
+    for (i = 0; i < m; i++) {
+        for (j = 0; j < n; j++) {
+            rotated[j][m - 1 - i] = matrix[i][j];
+        }
+    }
+
+    // Print rotated matrix
+    printf("Matrix after 90° clockwise rotation:\n");
+    for (i = 0; i < n; i++) {
+        for (j = 0; j < m; j++) {
+            printf("%d ", rotated[i][j]);
+        }
+        printf("\n");
+    }
+
+    return 0;
+}
