@@ -1,0 +1,21 @@
+#include <graphics.h>
+#include <conio.h>
+
+int main() {
+    int gd = DETECT, gm;
+    int x = 250, y = 200, radius = 100;
+
+    // Initialize graphics mode
+    initgraph(&gd, &gm, "");  // leave path empty if using modern IDE with graphics.h support
+
+    // Draw a circle
+    circle(x, y, radius);
+
+    // Wait for a key press
+    getch();
+
+    // Close the graphics window
+    closegraph();
+
+    return 0;
+}
