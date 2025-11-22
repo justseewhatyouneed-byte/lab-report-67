@@ -1,0 +1,17 @@
+#include <stdio.h>
+
+int main() {
+    // 1. Compile-time error (Uncomment to see)
+    // printf("This will cause a compile-time error"  // missing closing parenthesis
+
+    // 2. Runtime error
+    int a = 10, b = 0;
+    // printf("Result = %d\n", a / b);  // division by zero (runtime error)
+
+    // 3. Logical error
+    int x = 5, y = 3;
+    int sum = x - y;  // intended to add but used subtraction
+    printf("Logical error example, sum = %d (should be 8)\n", sum);
+
+    return 0;
+}
