@@ -1,0 +1,31 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main() {
+    int choice;
+    printf("Choose a runtime exception to demonstrate:\n");
+    printf("1. Division by zero\n2. Array out of bounds\n3. Null pointer dereference\n");
+    scanf("%d", &choice);
+
+    switch(choice) {
+        case 1: {
+            int a = 10, b = 0;
+            printf("Result = %d\n", a / b);  // division by zero
+            break;
+        }
+        case 2: {
+            int arr[3] = {1, 2, 3};
+            printf("Accessing 5th element: %d\n", arr[4]);  // out-of-bounds access
+            break;
+        }
+        case 3: {
+            int *ptr = NULL;
+            printf("Dereferencing NULL pointer: %d\n", *ptr);  // null pointer
+            break;
+        }
+        default:
+            printf("Invalid choice!\n");
+    }
+
+    return 0;
+}
