@@ -1,0 +1,16 @@
+#include <stdio.h>
+
+int main() {
+    char name[100];
+
+    printf("Enter your name: ");
+    fgets(name, sizeof(name), stdin);  // input full name
+
+    if(name[0] != '\n') {
+        printf("The initial of the name is: %c\n", name[0]);
+    } else {
+        printf("No name entered.\n");
+    }
+
+    return 0;
+}
