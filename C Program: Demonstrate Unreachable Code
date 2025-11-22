@@ -1,0 +1,25 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main() {
+    printf("This line will execute.\n");
+
+    return 0;  // Program exits here
+
+    // The following line is unreachable
+    printf("This line will never execute.\n");
+
+    // Another example with exit()
+    // exit(0);
+    // printf("Unreachable code after exit.\n");
+
+    // Example inside loop
+    /*
+    for(int i = 0; i < 5; i++) {
+        break;
+        printf("Unreachable code after break inside loop.\n");
+    }
+    */
+
+    return 0;
+}
