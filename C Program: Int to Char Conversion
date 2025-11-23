@@ -1,0 +1,14 @@
+#include <stdio.h>
+
+int main() {
+    int num = 65;   // ASCII value of 'A'
+    char ch;
+
+    // Convert int to char
+    ch = (char) num;
+
+    printf("Integer value : %d\n", num);
+    printf("Character     : %c\n", ch);
+
+    return 0;
+}
