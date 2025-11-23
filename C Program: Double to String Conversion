@@ -1,0 +1,14 @@
+#include <stdio.h>
+
+int main() {
+    double num = 123.456789;
+    char str[50];
+
+    // Convert double to string
+    sprintf(str, "%lf", num);
+
+    printf("Double value : %lf\n", num);
+    printf("String value : %s\n", str);
+
+    return 0;
+}
