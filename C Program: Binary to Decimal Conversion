@@ -1,0 +1,29 @@
+#include <stdio.h>
+#include <math.h>
+
+int main() {
+    long long binary;
+    int decimal = 0, base = 1, rem;
+
+    printf("Enter a binary number: ");
+    scanf("%lld", &binary);
+
+    long long temp = binary;
+
+    // Convert binary to decimal
+    while (temp > 0) {
+        rem = temp % 10;
+        if (rem != 0 && rem != 1) {
+            printf("Invalid binary number!\n");
+            return 0;
+        }
+        decimal += rem * base;
+        base *= 2;
+        temp /= 10;
+    }
+
+    printf("Binary Number : %lld\n", binary);
+    printf("Decimal Number: %d\n", decimal);
+
+    return 0;
+}
