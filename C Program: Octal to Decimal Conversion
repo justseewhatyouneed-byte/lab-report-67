@@ -1,0 +1,24 @@
+#include <stdio.h>
+#include <math.h>
+
+int main() {
+    int octal, decimal = 0, base = 1, rem;
+
+    printf("Enter an octal number: ");
+    scanf("%d", &octal);
+
+    int temp = octal;
+
+    // Convert octal to decimal
+    while (temp > 0) {
+        rem = temp % 10;       // Get last digit
+        decimal += rem * base; // Add to decimal value
+        base *= 8;             // Increase base (8^n)
+        temp /= 10;            // Remove last digit
+    }
+
+    printf("Octal Number   : %d\n", octal);
+    printf("Decimal Number : %d\n", decimal);
+
+    return 0;
+}
