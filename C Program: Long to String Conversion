@@ -1,0 +1,14 @@
+#include <stdio.h>
+
+int main() {
+    long num = 1234567890;
+    char str[50];
+
+    // Convert long to string
+    sprintf(str, "%ld", num);
+
+    printf("Long value   : %ld\n", num);
+    printf("String value : %s\n", str);
+
+    return 0;
+}
