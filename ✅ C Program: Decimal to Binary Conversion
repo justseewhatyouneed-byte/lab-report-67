@@ -1,0 +1,36 @@
+#include <stdio.h>
+
+int main() {
+    int decimal, temp;
+    int binary[32];
+    int index = 0;
+
+    printf("Enter a decimal number: ");
+    scanf("%d", &decimal);
+
+    temp = decimal;
+
+    // Convert decimal to binary
+    if (temp == 0) {
+        printf("Binary: 0\n");
+        return 0;
+    }
+
+    while (temp > 0) {
+        binary[index] = temp % 2;
+        temp /= 2;
+        index++;
+    }
+
+    printf("Decimal Number : %d\n", decimal);
+    printf("Binary Number  : ");
+
+    // Print binary in reverse order
+    for (int i = index - 1; i >= 0; i--) {
+        printf("%d", binary[i]);
+    }
+
+    printf("\n");
+
+    return 0;
+}
