@@ -1,0 +1,14 @@
+#include <stdio.h>
+
+int main() {
+    float num = 12.3456;
+    char str[50];
+
+    // Convert float to string
+    sprintf(str, "%f", num);
+
+    printf("Float value: %f\n", num);
+    printf("String value: %s\n", str);
+
+    return 0;
+}
