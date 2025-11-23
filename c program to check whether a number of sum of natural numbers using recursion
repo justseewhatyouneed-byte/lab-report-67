@@ -1,0 +1,30 @@
+#include <stdio.h>
+
+// Recursive function to calculate sum of first n natural numbers
+int sumOfNaturalNumbers(int n) {
+    if (n == 0)
+        return 0;  // Base case
+    return n + sumOfNaturalNumbers(n - 1);  // Recursive case
+}
+
+int main() {
+    int number, n = 1, sum;
+
+    printf("Enter a number: ");
+    scanf("%d", &number);
+
+    // Find if number can be sum of first n natural numbers
+    while (1) {
+        sum = sumOfNaturalNumbers(n);
+        if (sum == number) {
+            printf("%d can be expressed as the sum of first %d natural numbers.\n", number, n);
+            break;
+        } else if (sum > number) {
+            printf("%d cannot be expressed as the sum of consecutive natural numbers starting from 1.\n", number);
+            break;
+        }
+        n++;
+    }
+
+    return 0;
+}
