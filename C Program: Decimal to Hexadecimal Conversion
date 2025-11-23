@@ -1,0 +1,39 @@
+#include <stdio.h>
+
+int main() {
+    int decimal;
+    char hex[20];
+    int index = 0, rem;
+
+    printf("Enter a decimal number: ");
+    scanf("%d", &decimal);
+
+    int temp = decimal;
+
+    // Convert decimal to hexadecimal
+    while (temp != 0) {
+        rem = temp % 16;
+        
+        // Convert remainder to hex digit
+        if (rem < 10)
+            hex[index] = rem + '0';
+        else
+            hex[index] = rem - 10 + 'A';
+        
+        index++;
+        temp /= 16;
+    }
+
+    hex[index] = '\0';
+
+    // Print hex number in reverse order
+    printf("Decimal Number     : %d\n", decimal);
+    printf("Hexadecimal Number : ");
+
+    for (int i = index - 1; i >= 0; i--)
+        printf("%c", hex[i]);
+
+    printf("\n");
+
+    return 0;
+}
