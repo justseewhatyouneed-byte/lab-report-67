@@ -1,0 +1,21 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main() {
+    char str[] = "1234567890";
+    char *endPtr;
+    
+    long num;
+
+    // Convert string to long
+    num = strtol(str, &endPtr, 10);
+
+    if (*endPtr != '\0') {
+        printf("Conversion error: Non-numeric characters found\n");
+    } else {
+        printf("String value : %s\n", str);
+        printf("Long value   : %ld\n", num);
+    }
+
+    return 0;
+}
