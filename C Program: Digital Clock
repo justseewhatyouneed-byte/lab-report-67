@@ -1,0 +1,42 @@
+#include <stdio.h>
+#include <time.h>
+#include <unistd.h>   // for sleep() on Linux/Unix. On Windows, use <windows.h> and Sleep(ms)
+#include <stdlib.h>   // for system("clear") / system("cls")
+
+int main() {
+    while (1) {
+        time_t now;
+        struct tm *t;
+        int hour12;
+        char am_pm[3];
+
+        // Get current time
+        time(&now);
+        t = localtime(&now);
+
+        // Determine AM/PM
+        if (t->tm_hour >= 12) {
+            strcpy(am_pm, "PM");
+        } else {
+            strcpy(am_pm, "AM");
+        }
+
+        // Convert hour to 12-hour format
+        hour12 = t->tm_hour % 12;
+        if (hour12 == 0) hour12 = 12;
+
+        // Clear the screen
+#ifdef _WIN32
+        system("cls");   // Windows
+#else
+        system("clear"); // Linux/Unix
+#endif
+
+        // Print digital clock
+        printf("Digital Clock: %02d:%02d:%02d %s\n", hour12, t->tm_min, t->tm_sec, am_pm);
+
+        sleep(1); // Wait for 1 second
+    }
+
+    return 0;
+}
