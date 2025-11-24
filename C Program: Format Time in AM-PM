@@ -1,0 +1,26 @@
+#include <stdio.h>
+
+int main() {
+    int hour, minute, second;
+    char am_pm[3];
+
+    // Input time in 24-hour format
+    printf("Enter time in 24-hour format (HH MM SS): ");
+    scanf("%d %d %d", &hour, &minute, &second);
+
+    // Determine AM or PM
+    if (hour >= 12) {
+        strcpy(am_pm, "PM");
+    } else {
+        strcpy(am_pm, "AM");
+    }
+
+    // Convert hour to 12-hour format
+    int hour12 = hour % 12;
+    if (hour12 == 0) hour12 = 12;
+
+    // Print formatted time
+    printf("Time in 12-hour format: %02d:%02d:%02d %s\n", hour12, minute, second, am_pm);
+
+    return 0;
+}
