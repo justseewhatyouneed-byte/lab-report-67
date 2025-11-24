@@ -1,0 +1,41 @@
+#include <stdio.h>
+#include <time.h>
+
+int main() {
+    time_t now;
+    struct tm *t;
+
+    // Get current system time
+    time(&now);
+    t = localtime(&now);
+
+    int day = t->tm_mday;
+    int month = t->tm_mon + 1; // tm_mon is 0-11
+    int year = t->tm_year + 1900; // tm_year is years since 1900
+
+    // Format 1: DD/MM/YYYY
+    printf("Date (DD/MM/YYYY): %02d/%02d/%d\n", day, month, year);
+
+    // Format 2: MM/DD/YYYY
+    printf("Date (MM/DD/YYYY): %02d/%02d/%d\n", month, day, year);
+
+    // Format 3: YYYY-MM-DD
+    printf("Date (YYYY-MM-DD): %d-%02d-%02d\n", year, month, day);
+
+    // Format 4: Day-MonthName-Year
+    char *monthNames[] = {
+        "January", "February", "March", "April", "May", "June",
+        "July", "August", "September", "October", "November", "December"
+    };
+    printf("Date (DD-Month-YYYY): %02d-%s-%d\n", day, monthNames[month-1], year);
+
+    // Format 5: Weekday, DD Month YYYY
+    char *weekDays[] = {
+        "Sunday", "Monday", "Tuesday", "Wednesday",
+        "Thursday", "Friday", "Saturday"
+    };
+    printf("Date (Weekday, DD Month YYYY): %s, %02d %s %d\n",
+           weekDays[t->tm_wday], day, monthNames[month-1], year);
+
+    return 0;
+}
