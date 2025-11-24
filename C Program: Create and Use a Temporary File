@@ -1,0 +1,32 @@
+#include <stdio.h>
+
+int main() {
+    FILE *temp;
+
+    // Create a temporary file
+    temp = tmpfile();
+    if (temp == NULL) {
+        printf("Unable to create temporary file!\n");
+        return 1;
+    }
+
+    printf("Temporary file created successfully.\n");
+
+    // Write data to the temporary file
+    fprintf(temp, "Hello! This is a temporary file.\n");
+
+    // Reset file pointer to the beginning
+    rewind(temp);
+
+    // Read and display the content
+    char ch;
+    printf("\nData inside the temporary file:\n");
+    while ((ch = fgetc(temp)) != EOF) {
+        putchar(ch);
+    }
+
+    // Temporary file automatically removed when closed
+    fclose(temp);
+
+    return 0;
+}
