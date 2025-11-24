@@ -1,0 +1,64 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <zip.h>
+
+int main(int argc, char *argv[]) {
+    if (argc != 2) {
+        fprintf(stderr, "Usage: %s <zip‑filename>\n", argv[0]);
+        return 1;
+    }
+
+    int err = 0;
+    zip_t *archive = zip_open(argv[1], 0, &err);
+    if (archive == NULL) {
+        fprintf(stderr, "Failed to open zip file '%s'. Error code: %d\n", argv[1], err);
+        return 2;
+    }
+
+    // Get number of entries (files) in the zip
+    zip_int64_t num_entries = zip_get_num_entries(archive, 0);
+
+    for (zip_int64_t i = 0; i < num_entries; i++) {
+        struct zip_stat st;
+        if (zip_stat_index(archive, i, 0, &st) != 0) {
+            fprintf(stderr, "Could not stat index %lld\n", (long long)i);
+            continue;
+        }
+
+        printf("File %lld: %s (size: %llu bytes)\n",
+               (long long)i,
+               st.name,
+               (unsigned long long)st.size);
+
+        // Open file in zip by index
+        zip_file_t *zf = zip_fopen_index(archive, i, 0);
+        if (!zf) {
+            fprintf(stderr, "Failed to open file %s in zip\n", st.name);
+            continue;
+        }
+
+        // Allocate buffer for file content (+1 for null terminator, if text)
+        char *contents = malloc(st.size + 1);
+        if (contents == NULL) {
+            fprintf(stderr, "Memory allocation error\n");
+            zip_fclose(zf);
+            continue;
+        }
+
+        // Read the content
+        zip_int64_t bytes_read = zip_fread(zf, contents, st.size);
+        if (bytes_read < 0) {
+            fprintf(stderr, "Error reading file %s from zip\n", st.name);
+        } else {
+            // Add null terminator (just in case it's text)
+            contents[bytes_read] = '\0';
+            printf("--- Content Start ---\n%s\n--- Content End ---\n\n", contents);
+        }
+
+        free(contents);
+        zip_fclose(zf);
+    }
+
+    zip_close(archive);
+    return 0;
+}
